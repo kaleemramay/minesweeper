@@ -1,10 +1,22 @@
-const blankLine = '  |   |  ';
-// console.log(blankLine)
-// console.log(blankLine)
-// console.log(blankLine)
-const guessLine  = '1 |   |  ';
-const bombLine  = '  | B |  ';
+const printBoard = board => {
+    // Current Board
+    //console.log(`Current Board: ${board}`);
+    console.log("Current Board: ");
+    console.log(board[0].join(' | '));
+    console.log(board[1].join(' | '));
+    console.log(board[2].join(' | '));
+}
 
-console.log(guessLine)
-console.log(bombLine)
-console.log(blankLine)
+let board = [];
+board = [
+    [' ', ' ', ' '],
+    [' ', ' ', ' '],
+    [' ', ' ', ' ']
+]
+
+printBoard(board);
+
+board[0][1] = '1'
+board[2][2] = 'B'
+
+printBoard(board);
