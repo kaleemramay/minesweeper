@@ -1,33 +1,37 @@
 const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
-    let row = [];
-    let playerBoard= [];
-    for (c = 0; c < numberOfColumns; c++){
+    const board = [];
+
+    for (let rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      const row = [];
+      for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
         row.push(' ');
+      }
+      board.push(row);
     }
-    for (r = 0; r < numberOfRows; r++){
-        playerBoard.push(row);
-    }
-    return playerBoard
+    return board;
 }
 const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
-    let row = [];
-    let bombBoard= [];
-    for (c = 0; c < numberOfColumns; c++){
-        row.push(null);
-    }
-    for (r = 0; r < numberOfRows; r++){
-        bombBoard.push(row);
-    }
-    let numberOfBombsPlaced = 0; 
-    while (numberOfBombsPlaced < numberOfBombs){
-        let randomRowIndex = Math.floor(Math.random()* numberOfRows);
-        let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
-        bombBoard[randomRowIndex][randomColumnIndex] = 'B';
-        numberOfBombsPlaced++;
-        //An important note: The code in your while loop has the potential to place bombs on top of already existing bombs. This will be fixed when you learn about control flow.        
-    }
+    const board = [];
 
-    return bombBoard
+    for (let rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      const row = [];
+      for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
+        row.push(null);
+      }
+      board.push(row);
+    }
+  
+    let numberOfBombsPlaced = 0;
+  
+    while (numberOfBombsPlaced < numberOfBombs) {
+      // This code has the potential to place bombs on top of bombs, this will be fixed with control flow.
+      const randomRowIndex = Math.floor(Math.random() * numberOfRows);
+      const randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
+      board[randomRowIndex][randomColumnIndex] = 'B';
+      numberOfBombsPlaced++;
+    }
+  
+    return board;
 }
 
 const printBoard = board => {
@@ -36,35 +40,8 @@ const printBoard = board => {
 
 
 playerBoard = generatePlayerBoard(3, 4);
-bombBoard = generateBombBoard (5, 5, 2)
+bombBoard = generateBombBoard (5, 5, 8)
 console.log("Player Board:")
 console.log(printBoard(playerBoard));
 console.log("Bomb Board:")
 console.log(printBoard(bombBoard));
-
-// console.log(playerBoard)
-
-
-
-// const printBoard = board => {
-//     // Current Board
-//     //console.log(`Current Board: ${board}`);
-//     console.log("Current Board: ");
-//     console.log(board[0].join(' | '));
-//     console.log(board[1].join(' | '));
-//     console.log(board[2].join(' | '));
-// }
-
-// let board = [];
-// board = [
-//     [' ', ' ', ' '],
-//     [' ', ' ', ' '],
-//     [' ', ' ', ' ']
-// ]
-
-// printBoard(board);
-
-// board[0][1] = '1'
-// board[2][2] = 'B'
-
-// printBoard(board);
